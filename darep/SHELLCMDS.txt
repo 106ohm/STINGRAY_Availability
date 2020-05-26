@@ -1,0 +1,9 @@
+# to check the number of entries of the const arrays
+more arrays.h | grep const | awk -F',' '{print NF}'
+
+ttn 1 | awk '{if(($1-$5)>=0){m+=($1-$5);i++}}END{print m/i}'
+
+ttn 4 | awk '{m+=($1-$5); i++}END{print m/i}'
+
+# compare numbers of different solvers
+paste <(cd /usr/local/home/silvano/MobiusProject/parallelWorkingStations_ssa/Solver/ms_vark_n1000_ndeps10; echo "ttt" | tcsh | awk '{print ($1-$5)}') <(echo "ttt" | tcsh | awk '{print ($1-$5)}') | awk 'NR>2{print (1-$2/$1)}

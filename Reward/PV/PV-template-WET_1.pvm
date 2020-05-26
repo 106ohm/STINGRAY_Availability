@@ -1,0 +1,48 @@
+<class id="Mobius.RewardModels.pvs.VariableInfo">
+				<int id="ClassVersion">7</int>
+				<string id="Name">WET_${i}</string>
+				<vector id="AffectingModelList">
+					<string id="0">MADSANDAREP${i}</string>
+				</vector>
+				<vector id="AffectingActionsList">
+				</vector>
+				<vector id="ImpulseFunctionsList">
+				</vector>
+				<string id="RewardFunction">return MADSANDAREP${i}-&gt;T-&gt;Mark();</string>
+				<int id="Type">2</int>
+				<int id="TimeSeriesType">1</int>
+				<double id="TimeSeriesFirst">0.0</double>
+				<double id="TimeSeriesLast">1440.0</double>
+				<double id="TimeSeriesStep">5.0</double>
+				<double id="TimeSeriesInterval">0.0</double>
+				<int id="NumTimePoints">1</int>
+				<vector id="StartTimes">
+					<string id="0">0.0</string>
+				</vector>
+				<vector id="StopTimes">
+					<string id="0">t</string>
+				</vector>
+				<double id="InitialTransient">0.0</double>
+				<double id="BatchSize">1.0</double>
+				<null id="InitialTransientVar"></null>
+				<null id="BatchSizeVar"></null>
+				<boolean id="EstimateMean">true</boolean>
+				<boolean id="EstimateVariance">true</boolean>
+				<boolean id="EstimateInterval">false</boolean>
+				<boolean id="IncludeLowerBoundOnIntervalEstimate">true</boolean>
+				<boolean id="IncludeUpperBoundOnIntervalEstimate">true</boolean>
+				<double id="LowerBoundOnIntervalEstimate">0.0</double>
+				<double id="UpperBoundOnIntervalEstimate">1.0</double>
+				<boolean id="EstimateDistribution">true</boolean>
+				<boolean id="EstimateOutOfRangeProbabilities">true</boolean>
+				<double id="LowerBoundOnDistributionEstimate">-20.0</double>
+				<double id="UpperBoundOnDistributionEstimate">20.0</double>
+				<double id="StepSizeOnDistributionEstimate">1.0</double>
+				<int id="ConfidenceLevel">2</int>
+				<double id="ConfidenceInterval">0.1</double>
+				<boolean id="ConfidenceIntervalIsRelative">true</boolean>
+				<boolean id="RewardIsOverAllAvailableModels">true</boolean>
+				<vector id="ImpulseIsOverAllAvailableModels">
+					<boolean id="0">true</boolean>
+				</vector>
+			</class>

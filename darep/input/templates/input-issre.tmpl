@@ -1,0 +1,40 @@
+<darepinput>
+  <SANDAREP>
+    <name><: $sanname :></name>
+    <darepcomposedname><: $composedmodelname :></darepcomposedname>
+    <darepnodename><: $joinnodename :></darepnodename>
+    <replicasNumber><: $n :></replicasNumber>
+    <dependencyRelatedSV>
+      <name><: $drsvname :></name>
+      <!-- type* name -->
+      <type><: $drsvtype :></type>
+      <!-- node i depends on node i+1, i+2, ..., i+delta -->
+      : for [(0..($n-1))] -> $i {
+      <deps>
+ 	<!-- the replicas (dep) of the place that are shared with the replica (ind) -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+        : for [(1..$delta)] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+            : if ($i + $j) >= $n {
+            	  <ind><: $i + $j - $n :></ind>
+
+            : } else {
+                  <ind><: $i + $j :></ind>
+            : }
+	</dep>
+        : } # for $j
+      </deps>
+      : } # for $i
+    </dependencyRelatedSV>
+    <allSharedSV>
+      <!-- all-shared state variable -->
+      <name>A
+      </name>
+    </allSharedSV>
+  </SANDAREP>
+</darepinput>

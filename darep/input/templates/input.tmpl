@@ -1,0 +1,159 @@
+: constant n = $n;
+
+: constant demand_A = "Demand_A";
+: constant demand_B = "Demand_B";
+: constant up_A = "Up_A";
+: constant up_B = "Up_B";
+: constant nDRSV = 4;
+
+: constant p_A = 0.75;
+: constant p_B = 0.75;
+: constant n_A = round(p_A*n);
+: constant n_B = round(p_B*n);
+: constant min_A = 0;
+: constant max_A = n_A-1;
+: constant min_B = n-n_B;
+: constant max_B = n-1;
+
+<!-- macros -->
+: macro round -> $x {
+:  floor($x + 0.5);
+: }
+<!-- template -->
+<darepinput>
+<test><: n_A :>, <: n_B :></test>
+<test><: min_A :>, <: max_A :></test>
+<test><: min_B :>, <: max_B :></test>
+<SANDAREP>
+    <name><: $sanname :></name>
+    <darepcomposedname><: $composedmodelname :></darepcomposedname>
+    <darepnodename><: $joinnodename :></darepnodename>
+    <replicasNumber><: n :></replicasNumber>
+    <DRSVsNumber><: nDRSV :></DRSVsNumber>
+    <topology>
+      <!-- app A -->
+      <drsvs>
+        <drsv>
+        <name><: demand_A :></name>
+        <!-- type* name -->
+        <type><: $drsvtype :></type>
+        </drsv>
+        <drsv>
+        <name><: up_A :></name>
+        <!-- type* name -->
+        <type>Place</type>
+      </drsv>
+      </drsvs>
+      <!-- node i depends on node i+1, i+2, ..., i+delta (modulo n_A) -->
+      <!-- for i<min_A, node i depends only on node i -->
+      : for [(0..(min_A-1))] -> $i {
+      <deps>
+ 	<!-- the replicas (dep) of the place that are shared with the replica (ind) -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i<min_A
+      : for [(min_A..max_A)] -> $i {
+      <deps>
+ 	<!-- the replicas (dep) of the place that are shared with the replica (ind) -->
+        <!-- first dep item is node i -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+        <!-- next dep items -->
+        : for [(1..$delta)] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+            : if ($i + $j) > max_A {
+            	  <ind><: $i + $j - max_A -1 + min_A :></ind>
+            : } else {
+                  <ind><: $i + $j :></ind>
+            : }
+	</dep>
+        : } # for $j
+        </deps>
+        : } # for $i<=max_A
+      <!-- for i>max_A, node i depends only on node i -->
+      : for [((max_A+1)..(n-1))] -> $i {
+      <deps>
+ 	<!-- the replicas (dep) of the place that are shared with the replica (ind) -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i>max_A
+    </topology>
+    <topology>
+      <!-- app B -->
+      <drsvs>
+      <drsv>
+        <name><: demand_B :></name>
+        <!-- type* name -->
+        <type><: $drsvtype :></type>
+      </drsv>
+      <drsv>
+        <name><: up_B :></name>
+        <!-- type* name -->
+        <type>Place</type>
+      </drsv>
+      </drsvs>
+      <!-- node i depends on node i+1, i+2, ..., i+delta (modulo n_B) -->
+      <!-- for i<min_B, node i depends only on node i -->
+      : for [(0..(min_B-1))] -> $i {
+      <deps>
+ 	<!-- the replicas (dep) of the place that are shared with the replica (ind) -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i<min_B
+      : for [(min_B..max_B)] -> $i {
+      <deps>
+ 	<!-- the replicas (dep) of the place that are shared with the replica (ind) -->
+        <!-- first dep item is node i -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+        <!-- next dep items -->
+        : for [(1..$delta)] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+            : if ($i + $j) > max_B {
+            	  <ind><: $i + $j - max_B -1 + min_B :></ind>
+            : } else {
+                  <ind><: $i + $j :></ind>
+            : }
+	</dep>
+        : } # for $j
+        </deps>
+        : } # for $i<=max_B
+      <!-- for i>max_B, node i depends only on node i -->
+      : for [((max_B+1)..(n-1))] -> $i {
+      <deps>
+ 	<!-- the replicas (dep) of the place that are shared with the replica (ind) -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i>max_B
+    </topology>
+    <allSharedSV>
+      <!-- all-shared state variable -->
+      <name>A
+      </name>
+    </allSharedSV>
+  </SANDAREP>
+</darepinput>

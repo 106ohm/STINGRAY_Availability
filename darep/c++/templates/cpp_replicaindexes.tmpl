@@ -1,0 +1,5 @@
+// array of arrays: for each SAN replica, the list of absolute indexes of each DRSV replica corresponding to the entries of the list deps() associated to the SAN replica
+namespace <: $tsanname :>
+{
+    const Array2D_VarSizeRow<short,SANDAREP::<: $tsanname :>::MAXNREP,SANDAREP::<: $tsanname :>::<: $drsvdarepname :>::MAXDEPS> <: $drsvname :>depsID({<: $listabsrepind :>});
+}

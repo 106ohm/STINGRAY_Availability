@@ -1,0 +1,26 @@
+    // namespace for SAN: <: $TEMPLATESANNAME :>
+    namespace <: $TEMPLATESANNAME :>
+    {
+    <: $drsvnamespaces :>
+    
+    // maximum number of replicas for SAN: <: $TEMPLATESANNAME :>
+    const unsigned MAXNREP=<: $NREPS :>;
+    
+    // the generic replica, to define all the dependency-related state variables (DRSV) associated to the replica
+    class REP {
+    public:
+        <: $getdrsvstatevars :>
+    private:
+        <: $defdrsvstatevars :>
+    };  
+    
+    // the replicas of the template SAN: <: $TEMPLATESANNAME :>
+    extern REPS<REP,MAXNREP> rep;
+
+    // dummy function defined to avoid compilation error when "Index()"
+    inline unsigned Index(void) {
+    unsigned i=0;
+    return i;
+    };
+
+    } // namespace for SAN: <: $TEMPLATESANNAME :>

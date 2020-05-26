@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<class id="Mobius.Studies.RangeStudy.RangeStudyInterface">
+	<int id="ClassVersion">1</int>
+	<class id="Mobius.Studies.Common.BaseStudyInterface">
+		<int id="ClassVersion">1</int>
+		<class id="Mobius.BaseClasses.BaseInterfaceClass">
+			<int id="ClassVersion">3</int>
+			<string id="ModelName">Study_vardelta_T0m15_T0w1_DPT0diff10_DPw10</string>
+			<class id="Mobius.Studies.RangeStudy.RangeStudyInfoClass">
+				<int id="ClassVersion">1</int>
+				<class id="Mobius.Studies.BaseStudyInfoClass">
+					<int id="ClassVersion">1</int>
+					<class id="Mobius.BaseClasses.BaseInfoClass">
+						<int id="ClassVersion">2</int>
+					</class>
+				</class>
+			</class>
+			<class id="Mobius.Studies.RangeStudy.RangeStudyEditor">
+				<int id="ClassVersion">2</int>
+				<class id="Mobius.Studies.Common.BaseStudyEditor">
+					<int id="ClassVersion">4</int>
+					<class id="Mobius.BaseClasses.BaseEditorClass">
+						<int id="ClassVersion">3</int>
+						<boolean id="HasPanel">false</boolean>
+						<vector id="LocalGlobalNamesList">
+						</vector>
+						<vector id="LocalGlobalTypesList">
+						</vector>
+						<boolean id="DisplayToolTips">true</boolean>
+					</class>
+					<string id="FullPath">
+						/Users/silvano/MobiusProject/STINGRAY_Availability/Study/Stu
+						dy_vardelta_T0m15_T0w1_DPT0diff10_DPw10/
+					</string>
+					<string id="PVModelName">PV</string>
+					<vector id="ActiveExpVector">
+						<boolean id="0">true</boolean>
+						<boolean id="1">false</boolean>
+						<boolean id="2">false</boolean>
+						<boolean id="3">false</boolean>
+						<boolean id="4">false</boolean>
+						<boolean id="5">false</boolean>
+						<boolean id="6">false</boolean>
+						<boolean id="7">false</boolean>
+						<boolean id="8">false</boolean>
+						<boolean id="9">false</boolean>
+						<boolean id="10">false</boolean>
+						<boolean id="11">false</boolean>
+						<boolean id="12">false</boolean>
+						<boolean id="13">false</boolean>
+						<boolean id="14">false</boolean>
+					</vector>
+					<vector id="GVNameVector">
+						<string id="0">DPCoeff</string>
+						<string id="1">DPDeltaTInit</string>
+						<string id="2">MTBWF</string>
+						<string id="3">T0Coeff</string>
+						<string id="4">T0Init</string>
+						<string id="5">TRec</string>
+						<string id="6">WeatherUpdateTimea</string>
+						<string id="7">WeatherUpdateTimeb</string>
+						<string id="8">c</string>
+						<string id="9">delta</string>
+						<string id="10">mu</string>
+						<string id="11">n</string>
+						<string id="12">p0</string>
+						<string id="13">pDPVar</string>
+						<string id="14">pT0Var</string>
+						<string id="15">pTVar</string>
+						<string id="16">t</string>
+						<string id="17">w</string>
+					</vector>
+					<vector id="GVTypeStringVector">
+						<string id="0">double</string>
+						<string id="1">double</string>
+						<string id="2">double</string>
+						<string id="3">double</string>
+						<string id="4">double</string>
+						<string id="5">double</string>
+						<string id="6">double</string>
+						<string id="7">double</string>
+						<string id="8">double</string>
+						<string id="9">double</string>
+						<string id="10">double</string>
+						<string id="11">short</string>
+						<string id="12">double</string>
+						<string id="13">double</string>
+						<string id="14">double</string>
+						<string id="15">double</string>
+						<string id="16">double</string>
+						<string id="17">double</string>
+					</vector>
+				</class>
+				<int id="VectorLength">18</int>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Manual Range</string>
+					<string id="1">0</string>
+					<string id="2">0</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="e">
+					<string id="0">Fixed Value</string>
+				</vector>
+				<vector id="g">
+					<string id="0">10.0</string>
+				</vector>
+				<vector id="g">
+					<string id="0">10.0</string>
+				</vector>
+				<vector id="g">
+					<string id="0">10.0</string>
+				</vector>
+				<vector id="g">
+					<string id="0">1.0</string>
+				</vector>
+				<vector id="g">
+					<string id="0">-15.0</string>
+				</vector>
+				<vector id="g">
+					<string id="0">15.0</string>
+				</vector>
+				<vector id="g">
+					<string id="0">5.0</string>
+				</vector>
+				<vector id="g">
+					<string id="0">15.0</string>
+				</vector>
+				<vector id="g">
+					<string id="0">3.472222222222223E-4</string>
+				</vector>
+				<vector id="g">
+					<string id="0">0.2</string>
+					<string id="1">0.4</string>
+					<string id="2">0.6</string>
+					<string id="3">0.8</string>
+					<string id="4">1.0</string>
+					<string id="5">1.2</string>
+					<string id="6">1.4</string>
+					<string id="7">1.6</string>
+					<string id="8">1.8</string>
+					<string id="9">2.0</string>
+					<string id="10">2.2</string>
+					<string id="11">2.4</string>
+					<string id="12">2.6</string>
+					<string id="13">2.8</string>
+					<string id="14">3.0</string>
+				</vector>
+				<vector id="g">
+					<string id="0">0.01666666666666667</string>
+				</vector>
+				<vector id="g">
+					<string id="0">19</string>
+				</vector>
+				<vector id="g">
+					<string id="0">0.5</string>
+				</vector>
+				<vector id="g">
+					<string id="0">0.5</string>
+				</vector>
+				<vector id="g">
+					<string id="0">0.5</string>
+				</vector>
+				<vector id="g">
+					<string id="0">0.5</string>
+				</vector>
+				<vector id="g">
+					<string id="0">1440.0</string>
+				</vector>
+				<vector id="g">
+					<string id="0">5.0</string>
+				</vector>
+			</class>
+			<boolean id="Valid">true</boolean>
+		</class>
+	</class>
+</class>

@@ -1,0 +1,5 @@
+
+<listdrsvnames_SAN>
+ // example: mySANSANDAREP(0).mySSVDAREP()-&gt;Init2({mySSVDAREP0,mySSVDAREP1});
+ SANDAREP::<mySAN></mySAN>::rep(<myIndex></myIndex>).<myDRSV></myDRSV>()-&gt;Init2({<myDRSVdeps></myDRSVdeps>});
+</listdrsvnames_SAN>

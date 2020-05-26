@@ -1,0 +1,10 @@
+      // namespace for dependency-related state variable (DRSV): <: $drsvname :>
+      namespace <: $drsvnamespace :>
+      {      
+      // maximum number of replicas of the dependency-related state variable (DRSV) <: $drsvname :> occurring in each SAN replica, each replica of the DRSV <: $drsvname :> is shared with the corrisponding SAN replica <: $TEMPLATESANNAME :>
+      const unsigned MAXDEPS=<: $maxdeps :>;
+      
+      } // namespace for dependency-related state variable (DRSV): <: $drsvname :>
+
+      // pointer to dummy object for dependency-related state variable: <: $drsvname :>
+      extern DummyDRSV<<: $drsvtype :>>* <: $drsvname :>;

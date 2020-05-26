@@ -1,0 +1,11 @@
+
+# tiny:
+# move at end of line and type C-;
+m0\n3|%(expt 10 x)
+# you get:
+1
+10
+100
+1000
+
+

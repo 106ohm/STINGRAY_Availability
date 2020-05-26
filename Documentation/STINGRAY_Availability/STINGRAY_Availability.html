@@ -1,0 +1,372 @@
+<html>
+<head>
+<title>STINGRAY_Availability Documentation</title>
+<meta NAME="Description" Content="Project Documentation">
+</head>
+<body TEXT="black" BGCOLOR="white" LINK="blue" ALINK="red" VLINK="indigo" BACKGROUND="" >
+<p>
+<B>Model: MAD</B>
+<br />
+<img USEMAP="#ImageMap.MAD" type="image/svg+xml" src="MAD.png" height="184" width="546"></img>
+</p>
+<MAP NAME="ImageMap.MAD">
+<AREA SHAPE="rect" HREF="#Place.MAD.NOH" COORDS="514,115 534,135">
+<AREA SHAPE="rect" HREF="#Place.MAD.HOn" COORDS="477,115 497,135">
+<AREA SHAPE="rect" HREF="#Place.MAD.NW" COORDS="131,3 151,23">
+<AREA SHAPE="rect" HREF="#Place.MAD.F" COORDS="106,39 126,59">
+<AREA SHAPE="rect" HREF="#Place.MAD.NF" COORDS="1,39 21,59">
+<AREA SHAPE="rect" HREF="#Place.MAD.WF" COORDS="319,115 339,135">
+<AREA SHAPE="rect" HREF="#Place.MAD.TU" COORDS="0,118 20,138">
+<AREA SHAPE="rect" HREF="#Place.MAD.UA" COORDS="393,9 413,29">
+<AREA SHAPE="rect" HREF="#Place.MAD.FSys" COORDS="252,33 272,53">
+<AREA SHAPE="rect" HREF="#Place.MAD.R" COORDS="393,44 413,64">
+<AREA SHAPE="rect" HREF="#Place.MAD.NUA" COORDS="511,19 531,39">
+<AREA SHAPE="rect" HREF="#Extended Place.MAD.T" COORDS="255,117 275,137">
+<AREA SHAPE="rect" HREF="#Extended Place.MAD.H" COORDS="226,117 246,137">
+<AREA SHAPE="rect" HREF="#Extended Place.MAD.DP" COORDS="286,116 306,136">
+<AREA SHAPE="rect" HREF="#Extended Place.MAD.T0d" COORDS="195,117 215,137">
+<AREA SHAPE="rect" HREF="#Extended Place.MAD.te" COORDS="166,116 186,136">
+<AREA SHAPE="rect" HREF="#Input Gate.MAD.isTU" COORDS="39,118 59,138">
+<AREA SHAPE="rect" HREF="#Input Gate.MAD.isR" COORDS="295,33 315,53">
+<AREA SHAPE="rect" HREF="#Input Gate.MAD.isWF" COORDS="354,115 374,135">
+<AREA SHAPE="rect" HREF="#Output Gate.MAD.incNW" COORDS="82,3 102,23">
+<AREA SHAPE="rect" HREF="#Output Gate.MAD.decNW" COORDS="194,39 214,59">
+<AREA SHAPE="rect" HREF="#Output Gate.MAD.Var0" COORDS="124,86 144,106">
+<AREA SHAPE="rect" HREF="#Output Gate.MAD.Var1" COORDS="122,150 142,170">
+<AREA SHAPE="rect" HREF="#Output Gate.MAD.OnOff" COORDS="430,115 450,135">
+<AREA SHAPE="rect" HREF="#Output Gate.MAD.ER" COORDS="472,19 492,39">
+<AREA SHAPE="rect" HREF="#Timed Activity.MAD.CF" COORDS="57,34 63,64">
+<AREA SHAPE="rect" HREF="#Timed Activity.MAD.CR" COORDS="159,34 165,64">
+<AREA SHAPE="rect" HREF="#Timed Activity.MAD.TR" COORDS="439,23 445,53">
+<AREA SHAPE="rect" HREF="#Instantaneous Activity.MAD.tOO" COORDS="396,110 399,140">
+<AREA SHAPE="rect" HREF="#Instantaneous Activity.MAD.tTU" COORDS="84,113 93,143">
+<AREA SHAPE="rect" HREF="#Instantaneous Activity.MAD.tR" COORDS="343,28 346,58">
+</MAP>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="650" > <font size="2"><B>Custom Initialization Code</B></th></tr>
+<tr ><td > <font size="2"><pre><font size="2">
+// T0 value at time 0
+T0d-&gt;Mark()=T0Init;
+
+// DP value at time 0
+DP-&gt;Mark()=T0d-&gt;Mark()-DPDeltaTInit;
+
+// initialize temperature at time 0
+T-&gt;Mark()=T0d-&gt;Mark()+temperatureDeltaInit(SANDAREP::MAD::Index());
+
+// update H
+updateHumidity(H, T-&gt;Mark(), DP-&gt;Mark());
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<caption align="Top"><font size="2"><B><font color="black">Place Attributes</font></B>: </caption>
+<tr ><th width="150" > <font size="2"><B>Place Names</B></th><th width="500" > <font size="2"><B>Initial Markings</B></th></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.DP" >DP</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.F" >F</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.FSys" >FSys</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.H" >H</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.HOn" >HOn</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.NF" >NF</a>
+</font></td><td > <font size="2"><center>1</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.NOH" >NOH</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.NUA" >NUA</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.NW" >NW</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.R" >R</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.T" >T</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.T0d" >T0d</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.TU" >TU</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.UA" >UA</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.WF" >WF</a>
+</font></td><td > <font size="2"><center>1</center></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Place.MAD.te" >te</a>
+</font></td><td > <font size="2"><center>0</center></td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Timed Activity: </th><th width="500" > <font size="2"><font color="blue"><a name="Timed Activity.MAD.CF" ><B>CF</B></a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center><BR> Distribution Parameters</center></B></td><td > <font size="2"><B>Rate</B><br>
+<pre><font size="2">
+return c*pow(w, H-&gt;Mark());
+</font></pre>
+</td></tr>
+<tr ><td > <font size="2"><B><center>Activation Predicate</center></B></td><td > <font size="2"><pre><font size="2">
+1==1
+</font></pre>
+</td></tr>
+<tr ><td > <font size="2"><B><center>Reactivation Predicate</center></B></td><td > <font size="2"><pre><font size="2">
+1==1
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Timed Activity: </th><th width="500" > <font size="2"><font color="blue"><a name="Timed Activity.MAD.CR" ><B>CR</B></a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center><BR> Distribution Parameters</center></B></td><td > <font size="2"><B>Rate</B><br>
+<pre><font size="2">
+return mu;
+</font></pre>
+</td></tr>
+<tr ><td > <font size="2"><B><center>Activation Predicate</center></B></td><td > <font size="2"><pre><font size="2">
+1==1
+</font></pre>
+</td></tr>
+<tr ><td > <font size="2"><B><center>Reactivation Predicate</center></B></td><td > <font size="2"><pre><font size="2">
+1==1
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Timed Activity: </th><th width="500" > <font size="2"><font color="blue"><a name="Timed Activity.MAD.TR" ><B>TR</B></a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center><BR> Distribution Parameters</center></B></td><td > <font size="2"><B>Value</B><br>
+<pre><font size="2">
+TRec
+</font></pre>
+</td></tr>
+<tr ><td > <font size="2"><B><center>Activation Predicate</center></B></td><td > <font size="2"><center>(none)</center></td></tr>
+<tr ><td > <font size="2"><B><center>Reactivation Predicate</center></B></td><td > <font size="2"><center>(none)</center></td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Instantaneous Activity:</th><th width="500" > <font size="2"><font color="blue"><a name="Instantaneous Activity.MAD.tTU" >tTU</a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center>Case Distributions</center></B></td><td > <font size="2"><B>case 1</B><br>
+<pre><font size="2">
+1-pTVar
+</font></pre>
+<B>case 2</B><br>
+<pre><font size="2">
+pTVar
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="650" > <font size="2"><font color="black">Instantaneous Activities Without Cases: </font></th></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Instantaneous Activity.MAD.tOO" >tOO</a>
+</font></td></tr>
+<tr ><td > <font size="2"><font color="blue"><a name="Instantaneous Activity.MAD.tR" >tR</a>
+</font></td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Input Gate:</th><th width="500" > <font size="2"><font color="blue"><a name="Input Gate.MAD.isR" >isR</a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center>Predicate</center></B></td><td > <font size="2"><pre><font size="2">
+T-&gt;Mark() &lt;= DP-&gt;Mark() 
+&& T-&gt;Mark() &lt;= 0
+&& HOn-&gt;Mark()==0
+&& UA-&gt;Mark()==0
+&& SANDAREP::MAD::WF-&gt;Deps(0)-&gt;Mark()==0
+</font></pre>
+</td></tr>
+<tr ><td > <font size="2"><B><center>Function</center></B></td><td > <font size="2"><pre><font size="2">
+UA-&gt;Mark()=1; // unavailable switch
+NUA-&gt;Mark()++; // shared place, number of unavailable switches
+if( FSys-&gt;Mark()==0 ) 
+   FSys-&gt;Mark()=1; // failed system
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Input Gate:</th><th width="500" > <font size="2"><font color="blue"><a name="Input Gate.MAD.isTU" >isTU</a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center>Predicate</center></B></td><td > <font size="2"><pre><font size="2">
+SANDAREP::MAD::TU-&gt;Deps(0)-&gt;Mark()==1
+</font></pre>
+</td></tr>
+<tr ><td > <font size="2"><B><center>Function</center></B></td><td > <font size="2"><pre><font size="2">
+SANDAREP::MAD::TU-&gt;Deps(0)-&gt;Mark()=0;
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Input Gate:</th><th width="500" > <font size="2"><font color="blue"><a name="Input Gate.MAD.isWF" >isWF</a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center>Predicate</center></B></td><td > <font size="2"><pre><font size="2">
+SANDAREP::MAD::WF-&gt;Deps(0)-&gt;Mark()==1
+</font></pre>
+</td></tr>
+<tr ><td > <font size="2"><B><center>Function</center></B></td><td > <font size="2"><pre><font size="2">
+SANDAREP::MAD::WF-&gt;Deps(0)-&gt;Mark()=0;
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Output Gate:</th><th width="500" > <font size="2"><font color="blue"><a name="Output Gate.MAD.ER" >ER</a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center>Function</center></B></td><td > <font size="2"><pre><font size="2">
+NUA-&gt;Mark()--; // shared place, number of unavailable switches
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Output Gate:</th><th width="500" > <font size="2"><font color="blue"><a name="Output Gate.MAD.OnOff" >OnOff</a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center>Function</center></B></td><td > <font size="2"><pre><font size="2">
+if( UA-&gt;Mark()==0 ) { // not frozen switch
+   if ( HOn-&gt;Mark()==1 &&
+              ( ( SANDAREP::MAD::NW-&gt;Deps(0)-&gt;Mark() == 0 && Alg1LogicOff(T, DP, delta, delta) ) ||
+              ( SANDAREP::MAD::NW-&gt;Deps(0)-&gt;Mark() &gt; 0 && Alg2LogicOff(T, delta) ) )
+   ) { // Off
+    HOn-&gt;Mark()=0;
+    NOH-&gt;Mark()--;
+   } else if( HOn-&gt;Mark()==0 &&
+     ( ( SANDAREP::MAD::NW-&gt;Deps(0)-&gt;Mark() == 0 && Alg1LogicOn(T, DP, delta, delta) ) ||
+        ( SANDAREP::MAD::NW-&gt;Deps(0)-&gt;Mark() &gt; 0 && Alg2LogicOn(T, delta) ) )
+   ) { // On
+    HOn-&gt;Mark()=1;
+    NOH-&gt;Mark()++;
+   }
+} else { // On: recovery after frozen switch
+   if( R-&gt;Mark()==0 ) { // not yet enabled recovery
+      R-&gt;Mark()=1; // enable recovery
+      HOn-&gt;Mark()=1; // On
+      NOH-&gt;Mark()++; // On counter
+   }
+}
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Output Gate:</th><th width="500" > <font size="2"><font color="blue"><a name="Output Gate.MAD.Var0" >Var0</a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center>Function</center></B></td><td > <font size="2"><pre><font size="2">
+/* update T and H for each heater */
+
+// update T, T meets the trend (Var0)
+updateVar0Temperature(T, T0d-&gt;Mark(), te-&gt;Mark(), BaseModelClass::LastActionTime, t, temperatureCoeff(SANDAREP::MAD::Index()));
+
+// update H
+updateHumidity(H, T-&gt;Mark(), DP-&gt;Mark());
+
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Output Gate:</th><th width="500" > <font size="2"><font color="blue"><a name="Output Gate.MAD.Var1" >Var1</a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center>Function</center></B></td><td > <font size="2"><pre><font size="2">
+/* update T and H for each heater */
+
+// update T, T does not meet the trend (Var1)
+updateVar1Temperature(T, T0d-&gt;Mark(), te-&gt;Mark(), BaseModelClass::LastActionTime, t, temperatureCoeff(SANDAREP::MAD::Index()));
+
+// update H
+updateHumidity(H, T-&gt;Mark(), DP-&gt;Mark());
+
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Output Gate:</th><th width="500" > <font size="2"><font color="blue"><a name="Output Gate.MAD.decNW" >decNW</a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center>Function</center></B></td><td > <font size="2"><pre><font size="2">
+decNW(SANDAREP::MAD::NW-&gt;Deps());
+debug &lt;&lt; "Recovered connection on MAD " &lt;&lt; SANDAREP::MAD::Index()  &lt;&lt; " at Time " &lt;&lt; BaseModelClass::LastActionTime&lt;&lt; std::endl;
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+
+<p>
+<table border="1"CELLSPACING="0" >
+<tr ><th width="150" > <font size="2">Output Gate:</th><th width="500" > <font size="2"><font color="blue"><a name="Output Gate.MAD.incNW" >incNW</a>
+</font></th></tr>
+<tr ><td > <font size="2"><B><center>Function</center></B></td><td > <font size="2"><pre><font size="2">
+incNW(SANDAREP::MAD::NW-&gt;Deps());
+debug &lt;&lt; "Failed connection on MAD " &lt;&lt; SANDAREP::MAD::Index()  &lt;&lt; " at Time " &lt;&lt; BaseModelClass::LastActionTime&lt;&lt; std::endl;
+</font></pre>
+</td></tr>
+</font>
+</table>
+<p>
+
+</body>
+<hr>HTML generated by M&#246bius Documentor

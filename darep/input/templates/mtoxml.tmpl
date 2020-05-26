@@ -1,0 +1,791 @@
+<!-- xml file automatically generated from the template darep/input/templates/mtoxml.tmp using the script darep/bin/matpowerdarep.pl -->
+<!-- don't modify manually this file, each manual change of this file will be overwritten by the script darep/bin/matpowerdarep.pl -->
+<!-- to modify this file, change the template darep/input/templates/mtoxml.tmp -->
+
+: constant nBUS = $nbus;
+: constant nBRANCH = $nbranch;
+: constant nOLTC = $noltc;
+: constant nDG = $ndg;
+: constant nHG = $nhg;
+: constant nFL = $nfl;
+: constant nCB = $ncb;
+: constant nAGC = $nagc;
+:
+: constant composedmodelname = "Comp";
+: constant joinnodename = "Comp";
+:
+: # template ESTATE_SAN
+: constant estatesan = "ESTATE_SAN";
+:
+: # template BUS_SAN
+: constant bussan = "BUS_SAN";
+:
+: # template BRANCH_SAN
+: constant branchsan = "BRANCH_SAN";
+:
+: # template OLTC_SAN
+: constant oltcsan = "OLTC_SAN";
+:
+: # template DG_SAN
+: constant dgsan = "DG_SAN";
+:
+: # template HG_SAN
+: constant hgsan = "HG_SAN";
+:
+: # template FL_SAN
+: constant flsan = "FL_SAN";
+:
+: # template CB_SAN
+: constant cbsan = "CB_SAN";
+:
+: # template AGC_SAN
+: constant agcsan = "AGC_SAN";
+:
+: # macros
+: macro round -> $x {
+:  floor($x + 0.5);
+: }
+<darepinput>
+: # composed model
+<darepcomposedname><: composedmodelname :></darepcomposedname> <!-- name of the composed model -->
+<darepnodename><: joinnodename :></darepnodename> <!-- name of the join node -->
+ <SANDAREPS> <!-- list of template SAN -->
+: # ESTATE_SAN
+<SANDAREP> <!-- ESTATE_SAN -->
+    <name><: estatesan :></name>
+    <replicasNumber>1</replicasNumber> <!-- number of SAN replicas: 1 replica of estatesan -->
+    <topology> <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of BUS_SAN} -->
+      <replicasNumber><: nBUS :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>P</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>Q</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>V</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>Delta</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>BusStatus</name>
+        <type>Place</type>
+        </drsv>
+        </drsvs>
+        <deps> <!-- dependency: estate 0 to bus 0, ..., nBUS-1  -->
+   	<ind>0</ind>
+        : for [(0..(nBUS-1))] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+          <ind><: $j :></ind>
+	</dep>
+        : } # for $j
+        </deps>
+    </topology>  <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of BUS_SAN} -->
+    <topology> <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of BRANCH_SAN} -->
+      <replicasNumber><: nBRANCH :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>F</name> <!-- active power over line -->
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>I</name> <!-- current over line-->
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>BranchStatus</name>
+        <type>Place</type>
+        </drsv>
+      </drsvs>
+      <deps> <!-- dependency: estate 0 to branch 0, ..., nBRANCH-1  -->
+   	<ind>0</ind>
+        : for [(0..(nBRANCH-1))] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+          <ind><: $j :></ind>
+	</dep>
+        : } # for $j
+        </deps>
+    </topology>  <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of BRANCH_SAN} -->
+    <topology> <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of OLTC_SAN} -->
+      <replicasNumber><: nOLTC :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>OLTC_T</name> <!-- current tap value, control parameter -->
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      <deps> <!-- dependency: estate 0 to oltc 0, ..., nOLTC-1  -->
+   	<ind>0</ind>
+        : for [(0..(nOLTC-1))] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+          <ind><: $j :></ind>
+	</dep>
+        : } # for $j
+        </deps>
+    </topology>  <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of OLTC_SAN} -->
+    <topology> <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of DG_SAN} -->
+      <replicasNumber><: nDG :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>DG_CTRL_P</name> <!-- control parameter of active power injected by DG -->
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      <deps> <!-- dependency: estate 0 to DG 0, ..., nDG-1  -->
+   	<ind>0</ind>
+        : for [(0..(nDG-1))] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+          <ind><: $j :></ind>
+	</dep>
+        : } # for $j
+        </deps>
+    </topology>  <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of DG_SAN} -->
+    <topology> <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of HG_SAN} -->
+      <replicasNumber><: nHG :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>HG_PMax</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>HG_PMin</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>HG_QMax</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>HG_QMin</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>HG_CTRL_P</name> <!-- control parameter of active power injected by HG -->
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      <deps> <!-- dependency: estate 0 to HG 0, ..., nHG-1  -->
+   	<ind>0</ind>
+        : for [(0..(nHG-1))] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+          <ind><: $j :></ind>
+	</dep>
+        : } # for $j
+        </deps>
+    </topology>  <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of HG_SAN} -->
+    <topology> <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of FL_SAN} -->
+      <replicasNumber><: nFL :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>FL_CTRL_P</name> <!-- control parameter of active power injected by FL -->
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      <deps> <!-- dependency: estate 0 to FL 0, ..., nFL-1  -->
+   	<ind>0</ind>
+        : for [(0..(nFL-1))] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+          <ind><: $j :></ind>
+	</dep>
+        : } # for $j
+        </deps>
+    </topology>  <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of FL_SAN} -->
+    <topology> <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of CB_SAN} -->
+      <replicasNumber><: nCB :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>CB_q</name> <!-- control parameter of reactive power injected by CB -->
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      <deps> <!-- dependency: estate 0 to CB 0, ..., nCB-1  -->
+   	<ind>0</ind>
+        : for [(0..(nCB-1))] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+          <ind><: $j :></ind>
+	</dep>
+        : } # for $j
+        </deps>
+    </topology>  <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of CB_SAN} -->
+    <topology> <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of AGC_SAN} -->
+      <replicasNumber><: nAGC :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>AGCStatus</name> <!-- control parameter of reactive power injected by AGC -->
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      <deps> <!-- dependency: estate 0 to AGC 0, ..., nAGC-1  -->
+   	<ind>0</ind>
+        : for [(0..(nAGC-1))] -> $j {
+	<dep>
+	  <pos><: $j :></pos>
+          <ind><: $j :></ind>
+	</dep>
+        : } # for $j
+        </deps>
+    </topology>  <!-- ESTATE_SAN_<DRSV>.deps() \in {indexes of AGC_SAN} -->
+  </SANDAREP> <!-- ESTATE_SAN -->
+: # BUS_SAN
+  <SANDAREP> <!-- BUS_SAN -->
+    <name><: bussan :></name>
+    <darepcomposedname><: composedmodelname :></darepcomposedname> <!-- name of the composed model -->
+    <darepnodename><: joinnodename :></darepnodename> <!-- name of the join node -->
+    <replicasNumber><: nBUS :></replicasNumber> <!-- number of SAN replicas: number of buses -->
+    <topology> <!-- BUS_SAN_<DRSV>.deps() \in {indexes of BUS_SAN} -->
+      <replicasNumber><: nBUS :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>P</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>Q</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>V</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>Delta</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>BusStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for [(0..(nBUS-1))] -> $i {
+      <deps> <!-- dependency: bus i to bus i  -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i
+    </topology> <!-- BUS_SAN_<DRSV>.deps() \in {indexes of BUS_SAN} -->
+    <topology> <!-- BUS_SAN_<DRSV>.deps() \in {indexes of BRANCH_SAN} -->
+      <replicasNumber><: nBRANCH :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>BranchStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for [(0..(nBUS-1))] -> $i {
+      <deps> <!-- dependency: bus i to branch j1,...,jh  -->
+   	<ind><: $i :></ind>
+        : for $branchdepsbusindex[$i] -> $h { # for each branch linked to node 
+        <dep>
+          : # $~h: 0-origin iterator index (0, 1, 2, ...)
+	  <pos><: $~h :></pos>
+	  <ind><: $h :></ind>
+	</dep>
+        : } # for $h
+      </deps>
+      : } # for $i
+    </topology> <!-- BUS_SAN_<DRSV>.deps() \in {indexes of BRANCH_SAN} -->
+    : if nDG > 0 {
+    <topology> <!-- BUS_SAN_<DRSV>.deps() \in {index of DG_SAN} -->
+      <replicasNumber><: nDG :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>DGStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for $busdepsdgindex.keys() -> $i {
+      <deps> <!-- dependency: bus i to DG j1,...,jh (usually 1 DG) -->
+   	<ind><: $i :></ind>
+        : for $busdepsdgindex[$i] -> $h { # for each DG linked to node 
+        <dep>
+          : # $~h: 0-origin iterator index (0, 1, 2, ...)
+	  <pos><: $~h :></pos>
+	  <ind><: $h :></ind>
+	</dep>
+        : } # for $h
+      </deps>
+      : } # for $i
+    </topology> <!-- BUS_SAN_<DRSV>.deps() \in {index of DG_SAN} -->
+    : }
+    : if nHG > 0 {
+    <topology> <!-- BUS_SAN_<DRSV>.deps() \in {index of HG_SAN} -->
+      <replicasNumber><: nHG :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>HGStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for $busdepshgindex.keys() -> $i {
+      <deps> <!-- dependency: bus i to HG j1,...,jh (usually 1 HG) -->
+   	<ind><: $i :></ind>
+        : for $busdepshgindex[$i] -> $h { # for each HG linked to node 
+        <dep>
+          : # $~h: 0-origin iterator index (0, 1, 2, ...)
+	  <pos><: $~h :></pos>
+	  <ind><: $h :></ind>
+	</dep>
+        : } # for $h
+      </deps>
+      : } # for $i
+    </topology> <!-- BUS_SAN_<DRSV>.deps() \in {index of HG_SAN} -->
+    : }
+    : if nFL > 0 {
+    <topology> <!-- BUS_SAN_<DRSV>.deps() \in {index of FL_SAN} -->
+      <replicasNumber><: nFL :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>FLStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for $busdepsflindex.keys() -> $i {
+      <deps> <!-- dependency: bus i to FL j1,...,jh (usually 1 FL) -->
+   	<ind><: $i :></ind>
+        : for $busdepsflindex[$i] -> $h { # for each FL linked to node 
+        <dep>
+          : # $~h: 0-origin iterator index (0, 1, 2, ...)
+	  <pos><: $~h :></pos>
+	  <ind><: $h :></ind>
+	</dep>
+        : } # for $h
+      </deps>
+      : } # for $i
+    </topology> <!-- BUS_SAN_<DRSV>.deps() \in {index of FL_SAN} -->
+    : }
+    : if nCB > 0 {
+    <topology> <!-- BUS_SAN_<DRSV>.deps() \in {index of CB_SAN} -->
+      <replicasNumber><: nCB :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>CBStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for $busdepscbindex.keys() -> $i {
+      <deps> <!-- dependency: bus i to CB j1,...,jh (usually 1 CB) -->
+   	<ind><: $i :></ind>
+        : for $busdepscbindex[$i] -> $h { # for each CB linked to node 
+        <dep>
+          : # $~h: 0-origin iterator index (0, 1, 2, ...)
+	  <pos><: $~h :></pos>
+	  <ind><: $h :></ind>
+	</dep>
+        : } # for $h
+      </deps>
+      : } # for $i
+    </topology> <!-- BUS_SAN_<DRSV>.deps() \in {index of CB_SAN} -->
+    : }
+  </SANDAREP> <!-- BUS_SAN -->
+  : # BRANCH_SAN
+  <SANDAREP> <!-- BRANCH_SAN -->
+    <name><: branchsan :></name>
+    <replicasNumber><: nBRANCH :></replicasNumber> <!-- number of SAN replicas: number of branches -->
+    <topology> <!-- BRANCH_SAN_<DRSV>.deps() \in {index of BRANCH_SAN} -->
+      <replicasNumber><: nBRANCH :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>BranchStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for [(0..(nBRANCH-1))] -> $i {
+      <deps> <!-- dependency: branch i to branch i  -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i
+    </topology> <!-- BRANCH_SAN_<DRSV>.deps() \in {index of BRANCH_SAN} -->
+    <topology> <!-- BRANCH_SAN_<DRSV>.deps() \in {index of BUS_SAN} -->
+      <replicasNumber><: nBUS :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>P</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>Q</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>V</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+      </drsv>
+        <drsv>
+        <name>Delta</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+      </drsv>
+       <drsv>
+        <name>BusStatus</name>
+        <type>Place</type> <!-- type* name -->
+       </drsv>
+      </drsvs>
+      : for [(0..(nBRANCH-1))] -> $i { # for each branch index 
+      <deps> <!-- dependency: branch i to (bus j, bus k)  -->
+   	<ind><: $i :></ind>
+        : for [(0..1)] -> $h { # for each end node 
+        <dep>
+	  <pos><: $h :></pos>
+	  <ind><: $branchbusindex[$i][$h] :></ind>
+	</dep>
+        : } # for $h
+      </deps>
+      : }  # for $i
+    </topology> <!-- BRANCH_SAN_<DRSV>.deps() \in {index of BUS_SAN} -->
+    : if nOLTC > 0 {
+    <topology> <!-- BRANCH_SAN_<DRSV>.deps() \in {index of OLTC_SAN} -->
+      <replicasNumber><: nOLTC :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>OLTCStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for $branchdepsoltcindex.keys() -> $i {
+      <deps> <!-- dependency: branch i to OLTC j1,...,jh (usually 1 OLTC) -->
+   	<ind><: $i :></ind>
+        : for $branchdepsoltcindex[$i] -> $h { # for each OLTC linked to node 
+        <dep>
+          : # $~h: 0-origin iterator index (0, 1, 2, ...)
+	  <pos><: $~h :></pos>
+	  <ind><: $h :></ind>
+	</dep>
+        : } # for $h
+      </deps>
+      : } # for $i
+    </topology> <!-- BRANCH_SAN_<DRSV>.deps() \in {index of OLTC_SAN} -->
+    : }
+  </SANDAREP> <!-- BRANCH_SAN -->
+  : # OLTC_SAN
+  : if nOLTC > 0 {
+  <SANDAREP> <!-- OLTC_SAN -->
+    <name><: oltcsan :></name>
+    <replicasNumber><: nOLTC :></replicasNumber> <!-- number of SAN replicas: number of OLTC -->
+    <topology> <!-- OLTC_SAN_<DRSV>.deps() \in {index of OLTC_SAN} -->
+      <replicasNumber><: nOLTC :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>OLTCStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>OLTC_T</name> <!-- current tap value, control parameter -->
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for [(0..(nOLTC-1))] -> $i {
+      <deps> <!-- dependency: OLTC i to OLTC i  -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i
+    </topology> <!-- OLTC_SAN_<DRSV>.deps() \in {index of OLTC_SAN} -->
+    <topology> <!-- OLTC_SAN_<DRSV>.deps() \in {index of BRANCH_SAN} -->
+      <replicasNumber><: nBRANCH :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+       <drsv>
+        <name>BranchStatus</name>
+        <type>Place</type> <!-- type* name -->
+       </drsv>
+      </drsvs>
+      : for [(0..(nOLTC-1))] -> $i { # for each OLTC index 
+      <deps> <!-- dependency: OLTC i to branch j  -->
+   	<ind><: $i :></ind>
+        <dep>
+	  <pos>0</pos>
+	  <ind><: $oltcbranchindex[$i] :></ind>
+	</dep>
+      </deps>
+      : }  # for $i
+    </topology> <!-- OLTC_SAN_<DRSV>.deps() \in {index of BRANCH_SAN} -->
+  </SANDAREP> <!-- OLTC_SAN -->
+  : }
+  : # DG_SAN
+  : if nDG > 0 {
+  <SANDAREP> <!-- DG_SAN -->
+    <name><: dgsan :></name>
+    <replicasNumber><: nDG :></replicasNumber> <!-- number of SAN replicas: number of DG -->
+    <topology> <!-- DG_SAN_<DRSV>.deps() \in {index of DG_SAN} -->
+      <replicasNumber><: nDG :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>DGStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>DG_CTRL_P</name>
+        <type>ExtendedPlace&lt;double&gt;</type>
+        </drsv>
+      </drsvs>
+      : for [(0..(nDG-1))] -> $i {
+      <deps> <!-- dependency: DG i to DG i  -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i
+    </topology> <!-- DG_SAN_<DRSV>.deps() \in {index of DG_SAN} -->
+    <topology> <!-- DG_SAN_<DRSV>.deps() \in {index of BUS_SAN} -->
+      <replicasNumber><: nBUS :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>P</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>Q</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+       <drsv>
+        <name>BusStatus</name>
+        <type>Place</type> <!-- type* name -->
+       </drsv>
+      </drsvs>
+      : for [(0..(nDG-1))] -> $i { # for each DG index 
+      <deps> <!-- dependency: DG i to bus j  -->
+   	<ind><: $i :></ind>
+        <dep>
+	  <pos>0</pos>
+	  <ind><: $dgbusindex[$i] :></ind>
+	</dep>
+      </deps>
+      : }  # for $i
+    </topology> <!-- DG_SAN_<DRSV>.deps() \in {index of BUS_SAN} -->
+  </SANDAREP> <!-- DG_SAN -->
+  : }
+  : # HG_SAN
+  : if nHG > 0 {
+  <SANDAREP> <!-- HG_SAN -->
+    <name><: hgsan :></name>
+    <replicasNumber><: nHG :></replicasNumber> <!-- number of SAN replicas: number of HG -->
+    <topology> <!-- HG_SAN_<DRSV>.deps() \in {index of HG_SAN} -->
+      <replicasNumber><: nHG :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>HG_PMax</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>HG_PMin</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>HG_QMax</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>HG_QMin</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>HGStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>HG_CTRL_P</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for [(0..(nHG-1))] -> $i {
+      <deps> <!-- dependency: HG i to HG i  -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i 
+    </topology> <!-- HG_SAN_<DRSV>.deps() \in {index of HG_SAN} -->
+    <topology> <!-- HG_SAN_<DRSV>.deps() \in {index of BUS_SAN} -->
+      <replicasNumber><: nBUS :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+       <drsv>
+        <name>BusStatus</name>
+        <type>Place</type> <!-- type* name -->
+       </drsv>
+      </drsvs>
+      : for [(0..(nHG-1))] -> $i { # for each HG index 
+      <deps> <!-- dependency: HG i to bus j  -->
+   	<ind><: $i :></ind>
+        <dep>
+	  <pos>0</pos>
+	  <ind><: $hgbusindex[$i] :></ind>
+	</dep>
+      </deps>
+      : }  # for $i
+    </topology> <!-- HG_SAN_<DRSV>.deps() \in {index of BUS_SAN} -->
+  </SANDAREP> <!-- HG_SAN -->
+  : }
+   : # FL_SAN
+  : if nFL > 0 {
+    <SANDAREP> <!-- FL_SAN -->
+    <name><: flsan :></name>
+    <replicasNumber><: nFL :></replicasNumber> <!-- number of SAN replicas: number of FL -->
+    <topology> <!-- FL_SAN_<DRSV>.deps() \in {index of FL_SAN} -->
+      <replicasNumber><: nFL :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>FLStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>FL_CTRL_P</name> <!-- control parameter of active power demanded by FL -->
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for [(0..(nFL-1))] -> $i {
+      <deps> <!-- dependency: FL i to FL i  -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i 
+    </topology> <!-- FL_SAN_<DRSV>.deps() \in {index of FL_SAN} -->
+    <topology> <!-- FL_SAN_<DRSV>.deps() \in {index of BUS_SAN} -->
+      <replicasNumber><: nBUS :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>P</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>Q</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+       <drsv>
+        <name>BusStatus</name>
+        <type>Place</type> <!-- type* name -->
+       </drsv>
+      </drsvs>
+      : for [(0..(nFL-1))] -> $i { # for each FL index 
+      <deps> <!-- dependency: FL i to bus j  -->
+   	<ind><: $i :></ind>
+        <dep>
+	  <pos>0</pos>
+	  <ind><: $flbusindex[$i] :></ind>
+	</dep>
+      </deps>
+      : }  # for $i
+    </topology> <!-- FL_SAN_<DRSV>.deps() \in {index of BUS_SAN} -->
+  </SANDAREP> <!-- FL_SAN -->
+  : }
+   : # CB_SAN
+  : if nCB > 0 {
+    <SANDAREP> <!-- CB_SAN -->
+    <name><: cbsan :></name>
+    <replicasNumber><: nCB :></replicasNumber> <!-- number of SAN replicas: number of CB -->
+    <topology> <!-- CB_SAN_<DRSV>.deps() \in {index of CB_SAN} -->
+      <replicasNumber><: nCB :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>CBStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+        <drsv>
+        <name>CB_q</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for [(0..(nCB-1))] -> $i {
+      <deps> <!-- dependency: CB i to CB i  -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i 
+    </topology> <!-- CB_SAN_<DRSV>.deps() \in {index of CB_SAN} -->
+    <topology> <!-- CB_SAN_<DRSV>.deps() \in {index of BUS_SAN} -->
+      <replicasNumber><: nBUS :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>Q</name>
+        <type>ExtendedPlace&lt;double&gt;</type> <!-- type* name -->
+        </drsv>
+       <drsv>
+        <name>BusStatus</name>
+        <type>Place</type> <!-- type* name -->
+       </drsv>
+      </drsvs>
+      : for [(0..(nCB-1))] -> $i { # for each CB index 
+      <deps> <!-- dependency: CB i to bus j  -->
+   	<ind><: $i :></ind>
+        <dep>
+	  <pos>0</pos>
+	  <ind><: $cbbusindex[$i] :></ind>
+	</dep>
+      </deps>
+      : }  # for $i
+    </topology> <!-- CB_SAN_<DRSV>.deps() \in {index of BUS_SAN} -->
+  </SANDAREP> <!-- CB_SAN -->
+  : }
+   : # AGC_SAN
+    <SANDAREP> <!-- AGC_SAN -->
+    <name><: agcsan :></name>
+    <replicasNumber><: nAGC :></replicasNumber> <!-- number of SAN replicas: number of AGC -->
+    <topology> <!-- AGC_SAN_<DRSV>.deps() \in {index of AGC_SAN} -->
+      <replicasNumber><: nAGC :></replicasNumber> <!-- number of replicas of the DRSV listed below -->
+      <drsvs>
+        <drsv>
+        <name>AGCStatus</name>
+        <type>Place</type> <!-- type* name -->
+        </drsv>
+      </drsvs>
+      : for [(0..(nAGC-1))] -> $i {
+      <deps> <!-- dependency: AGC i to AGC i  -->
+   	<ind><: $i :></ind>
+	<dep>
+	  <pos>0</pos>
+	  <ind><: $i :></ind>
+	</dep>
+      </deps>
+      : } # for $i 
+    </topology> <!-- AGC_SAN_<DRSV>.deps() \in {index of AGC_SAN} -->
+  </SANDAREP> <!-- AGC_SAN -->
+  </SANDAREPS> <!-- list of template SAN -->
+ : # other shared state variables (no DRSV)
+ <sharedAllSAN> <!-- state variables (non drsv) shared among all SAN -->
+      <sv>Go</sv>     <!-- a tag <sv> for each state variable -->
+ </sharedAllSAN>
+ <sharedSAN>  <!-- state variables (non drsv) shared among SAN -->
+      <shared>      <!-- a tag <shared> for each combination of state variables and sans -->
+        <sv>UpdateEState</sv>    <!-- a tag <sv> for each state variable -->
+        <san>ESTATE_SAN</san>    <!-- a tag <san> for each template san -->
+        <san>BUS_SAN</san>
+        <san>BRANCH_SAN</san>
+        <san>AGC_SAN</san>
+        <san>HG_SAN</san>
+        <san>DG_SAN</san>
+        <san>FL_SAN</san>
+        <san>CB_SAN</san>
+        <san>OLTC_SAN</san>
+      </shared> 
+ </sharedSAN>
+</darepinput>

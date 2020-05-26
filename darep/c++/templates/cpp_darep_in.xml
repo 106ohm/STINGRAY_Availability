@@ -1,0 +1,60 @@
+<darep_in.h>
+  #ifndef __DAREP_IN_H_INCLUDED__   // if x.h hasn't been included yet...
+  #define __DAREP_IN_H_INCLUDED__   //   #define this so the compiler knows it has been included
+
+  // namespace for Join-Based Replication of SAN
+  namespace SANDAREP
+  {
+
+  <namespace_mySAN>
+    // namespace for SAN: <mySAN></mySAN>
+    namespace <mySAN></mySAN>
+    {
+    <namespace_myDRSV>
+      // namespace for dependency-related state variable (DRSV): <myDRSV></myDRSV>
+      namespace <myDRSVnamespace></myDRSVnamespace>
+      {      
+      // maximum number of dependency-related state variables shared with state variable in SAN: <myDRSV/>, <mySAN></mySAN>    
+      const unsigned MAXDEPS=<myMaxDeps></myMaxDeps>;
+      
+      } // namespace for dependency-related state variable (DRSV): <myDRSV/>
+    </namespace_myDRSV>
+
+    <DummyDRSV_myDRSV>
+      // pointer to dummy object for dependency-related state variable: <myDRSV/>
+      extern DummyDRSV&lt;<myTypeDRSV></myTypeDRSV>&gt;* <myDRSV></myDRSV>;
+    </DummyDRSV_myDRSV>
+    
+    // maximum number of replicas for SAN: <mySAN/>
+    const unsigned MAXNREP=<myMaxSANReps></myMaxSANReps>;
+    
+    // the generic replica, to define all the dependency-related state variables (DRSV) associated to the replica
+    class REP {
+    public:
+    <get_myDRSVTATEVAR>
+      DRSTATEVAR&lt;<myTypeDRSV></myTypeDRSV>,<myDRSVnamespace></myDRSVnamespace>::MAXDEPS&gt;* <myDRSV></myDRSV>() { // a member function for each dependency-related state variable: <myDRSV/>
+      return &amp;<myDRSV></myDRSV>STATEVAR;
+      };
+    </get_myDRSVTATEVAR>
+    private:
+    <def_myDRSVTATEVAR>
+      DRSTATEVAR&lt;<myTypeDRSV></myTypeDRSV>,<myDRSVnamespace></myDRSVnamespace>::MAXDEPS&gt; <myDRSV></myDRSV>STATEVAR; // a member for each dependency-related state variable: <myDRSV/>
+    </def_myDRSVTATEVAR>
+    };  
+    
+    // the replicas of the template SAN: <mySAN/>
+    extern REPS&lt;REP,MAXNREP&gt; rep;
+
+    // dummy function defined to avoid compilation error when "Index()"
+    inline unsigned Index(void) {
+    unsigned i=0;
+    return i;
+    };
+
+    } // namespace for SAN: <mySAN></mySAN>
+  </namespace_mySAN>
+
+  } // namespace for Join-Based Replication of SAN
+
+  #endif 
+</darep_in.h>

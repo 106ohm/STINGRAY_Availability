@@ -1,0 +1,3 @@
+// pointer to dummy object for dependency-related state variable: <: $drsvname :>
+   DummyDRSV<<: $drsvtype :>>  DummyDRSV_<: $drsvname :>; // define object
+   DummyDRSV<<: $drsvtype :>>* <: $drsvname :>=&DummyDRSV_<: $drsvname :>; // define pointer to object

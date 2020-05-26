@@ -1,0 +1,64 @@
+# This Makefile is used to include the file where are defined the user defined variables local to each project: OCFLAGS_PROJ and LINK_FLAGS_PROJ
+
+# Different file is included for each os or release of the os for wich different values of flags are required.
+
+# where are makefile for different os releases
+MAKEFILEDIR=$(ROOTDIR)/params/makefile
+
+# set flags for each os release
+UNAME=$(shell uname -s)
+ifeq ($(UNAME), Darwin) # macosx
+     makefileos=$(MAKEFILEDIR)/macosx_makefile
+     ifeq ($(shell test -f $(makefileos) && echo yes),yes)
+        include $(makefileos)
+     else
+        $(error File not found: $(makefileos))
+     endif
+else ifeq ($(UNAME), Linux) # linux os
+       ifeq ($(shell lsb_release -a | grep -c "openSUSE"),1) # opensuse os
+            makefileos=$(MAKEFILEDIR)/suse_makefile
+            ifeq ($(shell test -f $(makefileos) && echo yes),yes)
+                 include $(makefileos)
+            else
+	                     $(error File not found: $(makefileos))
+            endif
+       else ifeq ($(shell grep -c "Ubuntu 16.04" /etc/issue),1) # ubuntu 16.04
+            makefileos=$(MAKEFILEDIR)/ubu1604_makefile
+            ifeq ($(shell test -f $(makefileos) && echo yes),yes)
+                 include $(makefileos)
+            else
+                 $(error File not found: $(makefileos))
+            endif
+       else ifeq ($(shell uname -a | grep -c "Linux lumaca"),1) # ubuntu 14.04 on lumaca
+            makefileos=$(MAKEFILEDIR)/ubu1404_makefile
+            ifeq ($(shell test -f $(makefileos) && echo yes),yes)
+                 include $(makefileos)
+            else
+                 $(error File not found: $(makefileos))
+            endif
+       else ifeq ($(shell grep -c "Ubuntu" /etc/issue),1) # ubuntu os
+            makefileos=$(MAKEFILEDIR)/ubu_makefile
+            ifeq ($(shell test -f $(makefileos) && echo yes),yes)
+                 include $(makefileos)
+            else
+                 $(error File not found: $(makefileos))
+            endif
+       else # default linux os: suse
+            makefileos=$(MAKEFILEDIR)/suse_makefile
+            ifeq ($(shell test -f $(makefileos) && echo yes),yes)
+                 include $(makefileos)
+            else
+                 $(error File not found: $(makefileos))
+            endif
+       endif
+else # default: macosx
+            makefileos=$(MAKEFILEDIR)/macosx_makefile
+            ifeq ($(shell test -f $(makefileos) && echo yes),yes)
+                 include $(makefileos)
+            else
+                 $(error File not found: $(makefileos))
+            endif
+endif
+
+# show included user-defined makefile
+$(info Included user-defined makefile: $(makefileos))

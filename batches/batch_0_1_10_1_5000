@@ -1,0 +1,199 @@
+#!/bin/bash
+
+# the directory path of the results
+PROJECTNAME="STINGRAY_Availability"
+
+####################################
+
+# Num observations sent in 1 update to SimMgr. (default=1000)
+OBS="1000"
+
+BATCHES=5000
+
+# the seed for random numbers
+# seed 31415 at GUI, corresponds to -s 187704482
+#SEED="187704482"
+SEED="357781091"
+
+####################################
+
+# list of solvers with the list of the associated experiments, one solver and space-separated-exp-positive-numbers (>0) for each line, use star suffix (e.g., 5*) to add -a option to the experiment
+SOLVER_LIST="
+sim_vardelta_T00_T0w1_DPT0diff10_DPw1 11 12 13
+"
+
+########### MAIN CODE ##############
+
+main() {
+    init
+    checkin
+    #makedarep
+    makeparams
+    makesolvers
+    launchsolvers    
+}
+
+
+# set variables
+init() {
+    PROJECTS="${HOME}/MobiusProject"
+    PARAMS="${PROJECTS}/${PROJECTNAME}/params"
+    DAREP="${PROJECTS}/${PROJECTNAME}/darep"
+    SRC="${PARAMS}/src"
+    DAREPBIN="${PARAMS}/bin"
+    PARAMSBIN="${PARAMS}/bin"
+    HOST=$(uname -n)
+    # get arch
+    if [ "$(uname -s)" == "Darwin" ]; then
+	ARCH="macosx"
+    else
+	ARCH="linux"
+    fi    
+}
+
+# check input files
+checkin() {
+    # remove comments
+    MYSOLVER_LIST=$(echo "${SOLVER_LIST}" | awk '!/^[ ]*#.*/ {printf "%s\n", $0}')
+}
+
+# make library darep
+makedarep() {
+    echo ""
+    echo "Make the library darep:"
+    echo "cd ${DAREP}"
+    cd "${DAREP}"
+    ${DAREPBIN}/go.sh
+}
+
+# make library params
+makeparams() {
+    echo ""
+    echo "Make the user defined library params:"
+    echo "cd ${PARAMS}"
+    cd "${PARAMS}"
+    ${PARAMSBIN}/go.sh
+}
+
+# make solvers
+makesolvers() {
+    
+    IFS=$'\n'
+    for SOLVERINFO in ${MYSOLVER_LIST}; do
+        SOLVERNAME=$(echo "$SOLVERINFO" | awk '{print $1}')
+        EXPS=$(echo "$SOLVERINFO" | awk '{$1=""}1')
+
+	SOLVER="${PROJECTS}/${PROJECTNAME}/Solver/${SOLVERNAME}"
+
+	# the name of the solver command
+	COMMANDNAME="${SOLVERNAME}Sim_${ARCH}"
+	MYCOMMANDNAME="${SOLVERNAME}Sim_${ARCH}"
+	SOLVERCMD="${SOLVER}/${COMMANDNAME}"
+	MYSOLVERCMD="${SOLVER}/${MYCOMMANDNAME}"
+        
+	echo ""
+	echo "Make Solver:"
+	echo "cd ${SOLVER}"
+	cd "${SOLVER}"
+	if [ $? -ne 0 ]; then
+	    exit 1
+	fi
+	make clean
+	make opt
+	#make debug
+        
+	# rename solver
+	# mv -f "${COMMANDNAME}" "${MYCOMMANDNAME}"
+	echo "Solver: ${MYCOMMANDNAME}"
+        
+	echo ""
+    done    
+    unset IFS
+
+}
+
+
+# set options for solvers and prepare list of commands to launch them
+setsolvers() {
+    IFS=$'\n'	
+    for SOLVERINFO in ${MYSOLVER_LIST}; do
+        SOLVERNAME=$(echo "$SOLVERINFO" | awk '{print $1}')
+        EXPS=$(echo "$SOLVERINFO" | awk '{$1=""}1')
+
+	SOLVER="${PROJECTS}/${PROJECTNAME}/Solver/${SOLVERNAME}"
+        
+	# the name of the solver command
+	COMMANDNAME="${SOLVERNAME}Sim_${ARCH}"
+	MYCOMMANDNAME="${SOLVERNAME}Sim_${ARCH}"
+	SOLVERCMD="${SOLVER}/${COMMANDNAME}"
+	MYSOLVERCMD="${SOLVER}/${MYCOMMANDNAME}"
+
+        unset IFS
+        for iext in ${EXPS}; do
+            OPTA=""
+            ISOPTA=""
+            # get star info for -a option
+            ISOPTA=${iext#"${iext%?}"}
+            # remove suffix *
+            i=$(echo "${iext}" | awk '{gsub(/*$/,""); print}')
+
+	    h=$(($i-1))
+	    j=$(($i+1))
+	    EXTi="_$i"
+            
+	    # the dat file (output)
+	    DATFILE="${SOLVER}/Results_Exp${i}_N${BATCHES}_s${SEED}_${HOST}_bin.dat"
+	    ASCIIFILE="${SOLVER}/Results_Exp${i}_N${BATCHES}_s${SEED}_${HOST}_ascii.csv"
+	    
+            if [ "$ISOPTA" == "*" ]; then
+                OPTA="-a ${ASCIIFILE}"
+            fi
+            
+	    echo ""
+	    echo "Set solver options:"
+	    
+	    OPTIONS="-e${h} -N${BATCHES} -n${OBS} -s${SEED} -b ${DATFILE} ${OPTA}"
+	    #echo "${MYSOLVERCMD} ${OPTIONS} >&/dev/null &"
+	    #${MYSOLVERCMD} ${OPTIONS} >&/dev/null &
+	    # echo "${MYSOLVERCMD} ${OPTIONS} >&/dev/null"|sh &
+	    # bash -c "${MYSOLVERCMD} ${OPTIONS} >&/dev/null" &
+	    #eval "${MYSOLVERCMD} ${OPTIONS} >&/dev/null" &
+            
+	    # append commands to list
+	    CMD="${MYSOLVERCMD} ${OPTIONS} >&/dev/null"
+	    echo "${CMD}"
+	    CMDLIST="${CMD}\n${CMDLIST}"
+	    
+	    echo ""
+        done
+        IFS=$'\n'
+    done
+    unset IFS
+
+}
+
+# run solvers in parallel
+parallelsolvers() {
+
+    # Run up to PARALLELRUNS jobs in parallel
+    echo "Parallel running:"
+
+    #PARALLELRUNS=$(sysctl -n hw.ncpu)
+    #PARALLELRUNS="4"
+    PARALLELRUNS=$(getconf _NPROCESSORS_ONLN)
+
+    printf "${CMDLIST}" | parallel -v --no-notice -j${PARALLELRUNS} 
+
+}
+
+# lauch solvers
+launchsolvers() {
+
+    # list of solver commands to run in parallel
+    CMDLIST=""
+    
+    setsolvers
+    parallelsolvers
+}
+
+main "$@"

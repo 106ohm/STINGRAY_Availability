@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="ASCII"?>
+<models:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:models="http://www.mobius.illinois.edu/projects" name="STINGRAY_Availability" author="giulio" creationDate="2019-03-13T11:53:28.518+0100" lastSavedVersion="2.5.6.201807171551">
+  <atomic key="MADSANDAREP10">
+    <value name="MADSANDAREP10" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP11">
+    <value name="MADSANDAREP11" type="SAN Model"/>
+  </atomic>
+  <atomic key="Weather">
+    <value name="Weather" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP12">
+    <value name="MADSANDAREP12" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP13">
+    <value name="MADSANDAREP13" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP14">
+    <value name="MADSANDAREP14" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP15">
+    <value name="MADSANDAREP15" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP16">
+    <value name="MADSANDAREP16" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP17">
+    <value name="MADSANDAREP17" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP18">
+    <value name="MADSANDAREP18" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP0">
+    <value name="MADSANDAREP0" type="SAN Model"/>
+  </atomic>
+  <atomic key="MAD">
+    <value name="MAD" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP1">
+    <value name="MADSANDAREP1" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP2">
+    <value name="MADSANDAREP2" type="SAN Model"/>
+  </atomic>
+  <atomic key="WeatherSANDAREP0">
+    <value name="WeatherSANDAREP0" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP3">
+    <value name="MADSANDAREP3" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP4">
+    <value name="MADSANDAREP4" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP5">
+    <value name="MADSANDAREP5" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP6">
+    <value name="MADSANDAREP6" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP7">
+    <value name="MADSANDAREP7" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP8">
+    <value name="MADSANDAREP8" type="SAN Model"/>
+  </atomic>
+  <atomic key="MADSANDAREP9">
+    <value name="MADSANDAREP9" type="SAN Model"/>
+  </atomic>
+  <composed key="Comp">
+    <value name="Comp" category="Composed" type="Rep/Join Model"/>
+  </composed>
+  <reward key="PV">
+    <value name="PV" category="Reward" type="Performance Variables Model"/>
+  </reward>
+  <study key="Study_vardelta_T0m5_T0w10_DPT0diff1_DPw10">
+    <value name="Study_vardelta_T0m5_T0w10_DPT0diff1_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w1_DPT0diff10_DPw10">
+    <value name="Study_vardelta_T00_T0w1_DPT0diff10_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w10_DPT0diff5_DPw1">
+    <value name="Study_vardelta_T05_T0w10_DPT0diff5_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w10_DPT0diff1_DPw1">
+    <value name="Study_vardelta_T0m15_T0w10_DPT0diff1_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w1_DPT0diff10_DPw1">
+    <value name="Study_vardelta_T00_T0w1_DPT0diff10_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w1_DPT0diff5_DPw10">
+    <value name="Study_vardelta_T00_T0w1_DPT0diff5_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w10_DPT0diff10_DPw1">
+    <value name="Study_vardelta_T0m15_T0w10_DPT0diff10_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w10_DPT0diff5_DPw10">
+    <value name="Study_vardelta_T0m15_T0w10_DPT0diff5_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w1_DPT0diff10_DPw1">
+    <value name="Study_vardelta_T0m5_T0w1_DPT0diff10_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w1_DPT0diff5_DPw10">
+    <value name="Study_vardelta_T0m5_T0w1_DPT0diff5_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w10_DPT0diff10_DPw10">
+    <value name="Study_vardelta_T05_T0w10_DPT0diff10_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w1_DPT0diff10_DPw10">
+    <value name="Study_vardelta_T0m15_T0w1_DPT0diff10_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w1_DPT0diff1_DPw10">
+    <value name="Study_vardelta_T0m15_T0w1_DPT0diff1_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w10_DPT0diff10_DPw10">
+    <value name="Study_vardelta_T0m15_T0w10_DPT0diff10_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w1_DPT0diff5_DPw1">
+    <value name="Study_vardelta_T0m15_T0w1_DPT0diff5_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w1_DPT0diff5_DPw1">
+    <value name="Study_vardelta_T00_T0w1_DPT0diff5_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w10_DPT0diff1_DPw10">
+    <value name="Study_vardelta_T05_T0w10_DPT0diff1_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w1_DPT0diff5_DPw10">
+    <value name="Study_vardelta_T05_T0w1_DPT0diff5_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w1_DPT0diff10_DPw1">
+    <value name="Study_vardelta_T05_T0w1_DPT0diff10_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w10_DPT0diff1_DPw1">
+    <value name="Study_vardelta_T00_T0w10_DPT0diff1_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w10_DPT0diff1_DPw10">
+    <value name="Study_vardelta_T00_T0w10_DPT0diff1_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w10_DPT0diff1_DPw1">
+    <value name="Study_vardelta_T0m5_T0w10_DPT0diff1_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w10_DPT0diff10_DPw10">
+    <value name="Study_vardelta_T0m5_T0w10_DPT0diff10_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w10_DPT0diff5_DPw1">
+    <value name="Study_vardelta_T0m15_T0w10_DPT0diff5_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w1_DPT0diff1_DPw1">
+    <value name="Study_vardelta_T05_T0w1_DPT0diff1_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w1_DPT0diff1_DPw10">
+    <value name="Study_vardelta_T00_T0w1_DPT0diff1_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w1_DPT0diff1_DPw10">
+    <value name="Study_vardelta_T0m5_T0w1_DPT0diff1_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w10_DPT0diff5_DPw10">
+    <value name="Study_vardelta_T0m5_T0w10_DPT0diff5_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w10_DPT0diff1_DPw10">
+    <value name="Study_vardelta_T0m15_T0w10_DPT0diff1_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w10_DPT0diff10_DPw1">
+    <value name="Study_vardelta_T0m5_T0w10_DPT0diff10_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w1_DPT0diff1_DPw1">
+    <value name="Study_vardelta_T0m5_T0w1_DPT0diff1_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w10_DPT0diff10_DPw10">
+    <value name="Study_vardelta_T00_T0w10_DPT0diff10_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w1_DPT0diff10_DPw10">
+    <value name="Study_vardelta_T0m5_T0w1_DPT0diff10_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w10_DPT0diff1_DPw1">
+    <value name="Study_vardelta_T05_T0w10_DPT0diff1_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w1_DPT0diff5_DPw10">
+    <value name="Study_vardelta_T0m15_T0w1_DPT0diff5_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w10_DPT0diff5_DPw1">
+    <value name="Study_vardelta_T00_T0w10_DPT0diff5_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w1_DPT0diff10_DPw1">
+    <value name="Study_vardelta_T0m15_T0w1_DPT0diff10_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w1_DPT0diff1_DPw10">
+    <value name="Study_vardelta_T05_T0w1_DPT0diff1_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w10_DPT0diff5_DPw1">
+    <value name="Study_vardelta_T0m5_T0w10_DPT0diff5_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w1_DPT0diff5_DPw1">
+    <value name="Study_vardelta_T05_T0w1_DPT0diff5_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w10_DPT0diff5_DPw10">
+    <value name="Study_vardelta_T05_T0w10_DPT0diff5_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w10_DPT0diff10_DPw1">
+    <value name="Study_vardelta_T05_T0w10_DPT0diff10_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m15_T0w1_DPT0diff1_DPw1">
+    <value name="Study_vardelta_T0m15_T0w1_DPT0diff1_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w1_DPT0diff1_DPw1">
+    <value name="Study_vardelta_T00_T0w1_DPT0diff1_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w10_DPT0diff5_DPw10">
+    <value name="Study_vardelta_T00_T0w10_DPT0diff5_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T05_T0w1_DPT0diff10_DPw10">
+    <value name="Study_vardelta_T05_T0w1_DPT0diff10_DPw10" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w10_DPT0diff10_DPw1">
+    <value name="Study_vardelta_T00_T0w10_DPT0diff10_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T0m5_T0w1_DPT0diff5_DPw1">
+    <value name="Study_vardelta_T0m5_T0w1_DPT0diff5_DPw1" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study">
+    <value name="Study" category="Study" type="Range Study"/>
+  </study>
+  <study key="Study_vardelta_T00_T0w10_DPT0diff10_DPw1_ext">
+    <value name="Study_vardelta_T00_T0w10_DPT0diff10_DPw1_ext" category="Study" type="Range Study"/>
+  </study>
+  <solver key="sim_vardelta_T0m15_T0w1_DPT0diff1_DPw1">
+    <value name="sim_vardelta_T0m15_T0w1_DPT0diff1_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w10_DPT0diff1_DPw10">
+    <value name="sim_vardelta_T0m5_T0w10_DPT0diff1_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w1_DPT0diff1_DPw1">
+    <value name="sim_vardelta_T00_T0w1_DPT0diff1_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w1_DPT0diff10_DPw10">
+    <value name="sim_vardelta_T05_T0w1_DPT0diff10_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w10_DPT0diff10_DPw1">
+    <value name="sim_vardelta_T00_T0w10_DPT0diff10_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w10_DPT0diff5_DPw10">
+    <value name="sim_vardelta_T00_T0w10_DPT0diff5_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w10_DPT0diff1_DPw1">
+    <value name="sim_vardelta_T0m15_T0w10_DPT0diff1_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w1_DPT0diff5_DPw1">
+    <value name="sim_vardelta_T0m5_T0w1_DPT0diff5_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w1_DPT0diff10_DPw10">
+    <value name="sim_vardelta_T00_T0w1_DPT0diff10_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w10_DPT0diff5_DPw1">
+    <value name="sim_vardelta_T05_T0w10_DPT0diff5_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w1_DPT0diff5_DPw10">
+    <value name="sim_vardelta_T00_T0w1_DPT0diff5_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w1_DPT0diff10_DPw1">
+    <value name="sim_vardelta_T00_T0w1_DPT0diff10_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w1_DPT0diff1_DPw10">
+    <value name="sim_vardelta_T0m15_T0w1_DPT0diff1_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w10_DPT0diff10_DPw10">
+    <value name="sim_vardelta_T05_T0w10_DPT0diff10_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w1_DPT0diff10_DPw1">
+    <value name="sim_vardelta_T0m5_T0w1_DPT0diff10_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w1_DPT0diff5_DPw10">
+    <value name="sim_vardelta_T0m5_T0w1_DPT0diff5_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w10_DPT0diff5_DPw10">
+    <value name="sim_vardelta_T0m15_T0w10_DPT0diff5_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim">
+    <value name="sim" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w10_DPT0diff10_DPw1">
+    <value name="sim_vardelta_T0m15_T0w10_DPT0diff10_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w1_DPT0diff10_DPw10">
+    <value name="sim_vardelta_T0m15_T0w1_DPT0diff10_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w1_DPT0diff5_DPw1">
+    <value name="sim_vardelta_T0m15_T0w1_DPT0diff5_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w1_DPT0diff5_DPw1">
+    <value name="sim_vardelta_T00_T0w1_DPT0diff5_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w10_DPT0diff10_DPw10">
+    <value name="sim_vardelta_T0m15_T0w10_DPT0diff10_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w10_DPT0diff1_DPw10">
+    <value name="sim_vardelta_T05_T0w10_DPT0diff1_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w10_DPT0diff5_DPw1">
+    <value name="sim_vardelta_T0m15_T0w10_DPT0diff5_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w1_DPT0diff5_DPw10">
+    <value name="sim_vardelta_T05_T0w1_DPT0diff5_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w1_DPT0diff10_DPw1">
+    <value name="sim_vardelta_T05_T0w1_DPT0diff10_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w10_DPT0diff1_DPw1">
+    <value name="sim_vardelta_T00_T0w10_DPT0diff1_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w10_DPT0diff1_DPw10">
+    <value name="sim_vardelta_T00_T0w10_DPT0diff1_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w10_DPT0diff1_DPw1">
+    <value name="sim_vardelta_T0m5_T0w10_DPT0diff1_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w1_DPT0diff1_DPw1">
+    <value name="sim_vardelta_T05_T0w1_DPT0diff1_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w10_DPT0diff10_DPw1">
+    <value name="sim_vardelta_T0m5_T0w10_DPT0diff10_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w10_DPT0diff5_DPw10">
+    <value name="sim_vardelta_T0m5_T0w10_DPT0diff5_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w1_DPT0diff1_DPw10">
+    <value name="sim_vardelta_T00_T0w1_DPT0diff1_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w10_DPT0diff10_DPw10">
+    <value name="sim_vardelta_T00_T0w10_DPT0diff10_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w10_DPT0diff10_DPw10">
+    <value name="sim_vardelta_T0m5_T0w10_DPT0diff10_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w1_DPT0diff10_DPw10">
+    <value name="sim_vardelta_T0m5_T0w1_DPT0diff10_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w1_DPT0diff1_DPw10">
+    <value name="sim_vardelta_T0m5_T0w1_DPT0diff1_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w1_DPT0diff1_DPw1">
+    <value name="sim_vardelta_T0m5_T0w1_DPT0diff1_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w10_DPT0diff1_DPw10">
+    <value name="sim_vardelta_T0m15_T0w10_DPT0diff1_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w1_DPT0diff5_DPw10">
+    <value name="sim_vardelta_T0m15_T0w1_DPT0diff5_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m15_T0w1_DPT0diff10_DPw1">
+    <value name="sim_vardelta_T0m15_T0w1_DPT0diff10_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w10_DPT0diff1_DPw1">
+    <value name="sim_vardelta_T05_T0w10_DPT0diff1_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w10_DPT0diff5_DPw1">
+    <value name="sim_vardelta_T00_T0w10_DPT0diff5_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T0m5_T0w10_DPT0diff5_DPw1">
+    <value name="sim_vardelta_T0m5_T0w10_DPT0diff5_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w1_DPT0diff1_DPw10">
+    <value name="sim_vardelta_T05_T0w1_DPT0diff1_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w1_DPT0diff5_DPw1">
+    <value name="sim_vardelta_T05_T0w1_DPT0diff5_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w10_DPT0diff10_DPw1">
+    <value name="sim_vardelta_T05_T0w10_DPT0diff10_DPw1" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T05_T0w10_DPT0diff5_DPw10">
+    <value name="sim_vardelta_T05_T0w10_DPT0diff5_DPw10" category="Solver" type="Simulator"/>
+  </solver>
+  <solver key="sim_vardelta_T00_T0w10_DPT0diff10_DPw1_ext">
+    <value name="sim_vardelta_T00_T0w10_DPT0diff10_DPw1_ext" category="Solver" type="Simulator"/>
+  </solver>
+  <userDefinedHeader path="params/src/params.h" relative="true"/>
+  <userDefinedLibrary path="lib/$(PLATFORM)-m64/libparams.a" relative="true"/>
+</models:Project>

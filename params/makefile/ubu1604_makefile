@@ -1,0 +1,79 @@
+# This Makefile is used to define the user defined variables local to each project.
+# Use different file for each os or release of the os for wich different values of flags are required.
+
+# Define each variable with the cpp flags values required for the corresponding library,
+# then set the final flag variables (OCFLAGS_PROJ and LINK_FLAGS_PROJ) with the defined library variables.
+# Do not change the name of the variables defined for each different library, being they used also in the makefile of the corresponding libraries
+
+# ubu paths
+LOCALLIBDIR=/usr/local/lib
+OCTAVEVERSION=4.4.1
+OCTAVE=/usr/local/lib/octave-$(OCTAVEVERSION)
+SUPERLU=/usr/local/lib/superlu_mt
+PARADISEO=/usr/local/lib/ParadisEO
+ATLAS=/usr/lib/atlas-base
+
+# common to libs
+#COMMON_INCLUDE= -v -I/usr/lib/gcc/x86_64-linux-gnu/6/include
+COMMON_INCLUDE= -v -fPIC 
+#COMMON_LIB= -L/usr/lib/gcc/x86_64-linux-gnu/6
+COMMON_LIB= 
+# 
+# clang-3.4:
+# [ https://askubuntu.com/questions/523613/upgrade-to-gcc-4-9-broke-clang ]
+# [ https://stackoverflow.com/questions/18459894/clang-stdlib-libc-leads-to-undefined-reference ]
+# flag -stdlib=libc++
+# is required by clang++ to avoid following error: 
+# /usr/bin/../lib/gcc/x86_64-linux-gnu/6/../../../../include/c++/4.9/cstddef:51:11: error: no member named
+# 'max_align_t' in the global namespace
+#  using ::max_align_t;
+# but octave libs are compiled against libstdc++, 
+# thus clang++ fails with error: "undefined reference to" octave libs
+# 
+# To fix this error, remove clang-3.9 and install clang-3.9
+#
+# clang-3.9, Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8
+#    tested
+#
+override linux_CC=/usr/bin/clang++-3.9
+
+# ubu darep (depends on mobius install dir)
+DAREP_INCLUDE=-I$(MOBIUSROOT) 
+DAREP_LIB= 
+
+# ubu matpower
+MATPOWER_INCLUDE= -I$(OCTAVE)/include/octave-$(OCTAVEVERSION) -I$(OCTAVE)/include/octave-$(OCTAVEVERSION)/octave -I$(SUPERLU)/SRC -pthread
+MATPOWER_LIB= -L$(OCTAVE)/lib/octave/$(OCTAVEVERSION) -L$(SUPERLU)/lib -Wl,-rpath=$(OCTAVE)/lib/octave/$(OCTAVEVERSION) -Wl,-rpath=$(SUPERLU)/lib -loctave -loctinterp -lsuperlu_mt_PTHREAD $(ATLAS)/libf77blas.a $(ATLAS)/libatlas.a -lpthread
+
+#
+# to fix error: "library not found: libatlas.so ... libf77blas.so"
+#    cd /usr/lib/atlas-base
+#    sudo lm -s libatlas.so.3 libatlas.so
+#    sudo ln -s libf77blas.so.3 libf77blas.so
+#
+
+# ubu state
+STATE_INCLUDE= 
+STATE_LIB= 
+
+# ubu sundials
+#SUNDIALS_INCLUDE= -I/usr/local/lib64/sundials/include -I/usr/local/lib64/openmpi/include -I/usr/local/lib64/gcc_omp_include
+#SUNDIALS_LIB= -L/usr/local/lib64/sundials/lib -lsundials_kinsol -lsundials_nvecserial -lsundials_nvecparallel -llapack -lblas -L/usr/local/lib64/openmpi/lib64 -lm -lmpi
+
+# ubu omp (TODO: control path)
+OMP_INCLUDE= -I/usr/lib/gcc/x86_64-linux-gnu/8/include
+#OMP_LIB= -L/usr/lib/gcc/x86_64-linux-gnu/8 -lgomp
+OMP_LIB= /usr/lib/gcc/x86_64-linux-gnu/8/libgomp.a
+
+# ubu control (based on paradiseo)
+#CTRL_INCLUDE= -I/usr/include/paradiseo/eo -I/usr/include/paradiseo/moeo -I/usr/include/paradiseo/mo
+CTRL_INCLUDE= -I$(PARADISEO)/include/paradiseo/eo -I$(PARADISEO)/include/paradiseo/moeo -I$(PARADISEO)/include/paradiseo/mo $(OMP_INCLUDE)
+#CTRL_LIB= -leo -leoutils -lmoeo -lgomp
+#CTRL_LIB= -L$(PARADISEO)/lib64 -leo -leoutils -lmoeo -lgomp
+# prefer static
+CTRL_LIB=$(PARADISEO)/lib64/libeo.a $(PARADISEO)/lib64/libeoutils.a $(PARADISEO)/lib64/libmoeo.a $(OMP_LIB)
+
+# ubu compiler flags
+OCFLAGS_PROJ= -DDAREP -DMATPOWER -DSTATE -DCTRL -DSANFUNC $(MATPOWER_INCLUDE) $(STATE_INCLUDE) $(CTRL_INCLUDE) $(COMMON_INCLUDE)
+# ubu linker flags
+LINK_FLAGS_PROJ= $(MATPOWER_LIB) $(STATE_LIB) $(CTRL_LIB) $(COMMON_LIB)

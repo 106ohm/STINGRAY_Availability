@@ -1,0 +1,54 @@
+
+cpu times:
+
+- perl based:
+
+*** cpu time command: ./bin/inputxml.bash -s SAN -c Comp -j SANSANDAREP -p S -t "ExtendedPlace<double>" -n 1000 -d 99 -e _n1000_delta99 -f
+*** Wed Oct 18 14:50:25 CEST 2017
+*** System: cicala.local Darwin Intel(R) Core(TM) i7-2760QM CPU @ 2.40GHz
+user+sys user sys real
+0.601 0.522 0.079 0.637
+
+*** cpu time command: ./bin/inputxml.bash -s SAN -c Comp -j SANSANDAREP -p S -t ExtendedPlace<double> -n 1000 -d 99 -e _n1000_delta99 -f
+*** Thu Oct 19 13:35:34 CEST 2017
+*** System: bradipo Linux  Intel(R) Core(TM) i7-5960X CPU @ 3.00GHz
+user+sys user sys real
+0.309 0.273 0.036 0.320
+
+- xqilla based:
+
+including additional xml data for composed model (needed with xqilla-based approach):
+*** cpu time command: ./bin/inputxml.bash -s SAN -c Comp -j SANSANDAREP -p S -t "ExtendedPlace<double>" -n 1000 -d 99 -e _n1000_delta99 -f
+*** Wed Oct 18 14:50:40 CEST 2017
+*** System: cicala.local Darwin Intel(R) Core(TM) i7-2760QM CPU @ 2.40GHz
+user+sys user sys real
+15.596 8.446 7.150 11.294
+
+*** cpu time command: ./bin/inputxml.bash -s SAN -c Comp -j SANSANDAREP -p S -t ExtendedPlace<double> -n 1000 -d 99 -e _n1000_delta99 -f
+*** Thu Oct 19 13:37:17 CEST 2017
+*** System: bradipo Linux  Intel(R) Core(TM) i7-5960X CPU @ 3.00GHz
+user+sys user sys real
+6.751 2.944 3.807 3.784
+
+without additional xml data for composed model:
+*** cpu time command: ./bin/inputxml.bash -s SAN -c Comp -j SANSANDAREP -p S -t "ExtendedPlace<double>" -n 1000 -d 99 -e _n1000_delta99 -f
+*** Wed Oct 18 14:56:46 CEST 2017
+*** System: cicala.local Darwin Intel(R) Core(TM) i7-2760QM CPU @ 2.40GHz
+user+sys user sys real
+8.013 4.548 3.465 5.870
+
+
+- perl based:
+*** cpu time command: ./bin/darep.pl -f input_n1000_delta99.xml
+*** Wed Oct 18 15:10:21 CEST 2017
+*** System: cicala.local Darwin Intel(R) Core(TM) i7-2760QM CPU @ 2.40GHz
+user+sys user sys real
+28.487 27.361 1.126 28.654
+
+- xqilla based:
+*** cpu time command: ./bin/san2darep.bash -f input_n1000_delta99.xml
+*** Wed Oct 18 15:02:50 CEST 2017
+*** System: cicala.local Darwin Intel(R) Core(TM) i7-2760QM CPU @ 2.40GHz
+user+sys user sys real
+429.731 358.009 71.722 385.634
+

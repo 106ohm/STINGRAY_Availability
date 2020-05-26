@@ -1,0 +1,116 @@
+<darepinput>
+<darepcomposedname>Comp</darepcomposedname> <!-- name of the composed model -->
+<darepnodename>Comp</darepnodename> <!-- name of the join node -->
+ <SANDAREPS> <!-- list of template SAN -->
+   <SANDAREP> <!-- ESTATE_SAN -->
+     <name>Weather</name>
+     <replicasNumber>1</replicasNumber> <!-- number of SAN replicas -->
+     <topology> 
+       <replicasNumber>2</replicasNumber> <!-- number of replicas of the DRSV listed below -->
+       <drsvs>
+         <drsv>
+           <name>TU</name>
+           <type>Place</type> <!-- type* name -->
+         </drsv>
+         <drsv>
+           <name>WF</name>
+           <type>Place</type> <!-- type* name -->
+         </drsv>
+       </drsvs>
+       <deps> <!-- dependency: from 0 to 18, temperature and humidity measured by MADs  -->
+   	 <ind>0</ind>
+	 <dep>
+	   <pos>0</pos>
+           <ind>0</ind>
+	 </dep>
+	 <dep>
+	   <pos>1</pos>
+           <ind>1</ind>
+	 </dep>
+       </deps>
+     </topology>   
+   </SANDAREP>
+   <SANDAREP> 
+     <name>MAD</name>
+     <darepcomposedname>Comp</darepcomposedname> <!-- name of the composed model -->
+     <darepnodename>Comp</darepnodename> <!-- name of the join node -->
+     <replicasNumber>2</replicasNumber> <!-- number of SAN replicas: number of buses -->
+     <topology>
+       <replicasNumber>2</replicasNumber> <!-- number of replicas of the DRSV listed below -->
+       <drsvs>
+         <drsv>
+           <name>TU</name>
+           <type>Place</type> <!-- type* name -->
+         </drsv>
+         <drsv>
+           <name>WF</name>
+           <type>Place</type> <!-- type* name -->
+         </drsv>
+       </drsvs>
+       <!-- dependency: from 0 to 18 -->
+       <deps> 
+	 <ind>0</ind>
+	 <dep>
+	   <pos>0</pos>
+	   <ind>0</ind>
+	 </dep>
+       </deps>
+       <deps>
+	 <ind>1</ind>
+	 <dep>
+	   <pos>0</pos>
+	   <ind>1</ind>
+	 </dep>
+       </deps>
+     </topology>
+     <topology> 
+       <replicasNumber>2</replicasNumber> <!-- number of replicas of the DRSV listed below -->
+       <drsvs>
+         <drsv>
+           <name>NW</name>
+           <type>Place</type> <!-- type* name -->
+         </drsv>
+       </drsvs>
+       <deps> <!-- failure of the 0-th channel impact on 1...9 -->
+	 <ind>0</ind>
+	 <dep>
+	   <pos>0</pos>
+	   <ind>0</ind>
+	 </dep>
+	 <dep>
+	   <pos>1</pos>
+	   <ind>1</ind>
+	 </dep>
+       </deps>
+       <deps> <!-- failure of the 1-st channel impact on 2...9 -->
+	 <ind>1</ind>
+	 <dep>
+	   <pos>0</pos>
+	   <ind>1</ind>
+	 </dep>
+	 <dep>
+	   <pos>1</pos>
+	   <ind>0</ind>
+	 </dep>
+       </deps>
+     </topology> 
+   </SANDAREP> <!-- MAD -->
+ </SANDAREPS> <!-- list of template SAN -->
+ <sharedAllSAN> <!-- state variables (non drsv) shared among all SAN -->
+   <sv>te</sv>     <!-- a tag <sv> for each state variable -->
+ </sharedAllSAN>
+ <sharedSAN>
+   <shared>
+     <sv>FSys</sv>
+     <sv>NUA</sv>
+     <sv>NOH</sv>
+     <san>MAD</san>
+   </shared>
+   <shared>
+     <sv>T0</sv>
+     <sv>DP</sv>
+     <san>Weather</san>
+     <san>MAD</san>
+   </shared>
+ </sharedSAN>
+</darepinput>

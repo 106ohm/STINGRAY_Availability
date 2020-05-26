@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<class id="Mobius.ComposedModels.RepJoin.RepJoinInterface">
+	<int id="ClassVersion">1</int>
+	<class id="Mobius.BaseClasses.BaseInterfaceClass">
+		<int id="ClassVersion">3</int>
+		<string id="ModelName">${composedmodelname}</string>
+		<class id="Mobius.BaseClasses.BaseEditorClass">
+			<int id="ClassVersion">3</int>
+			<boolean id="HasPanel">true</boolean>
+			<class id="Mobius.BaseClasses.BasePanelClass">
+				<int id="ClassVersion">2</int>
+				<point id="Size of Panel">
+					<int id="x">600</int>
+					<int id="y">300</int>
+				</point>
+				<double id="ZoomFactor">1.0</double>
+				<boolean id="ShowGridEnabled">true</boolean>
+				<int id="ShowGridStep">10</int>
+				<boolean id="SnapGridEnabled">true</boolean>
+				<int id="SnapGridStep">10</int>
+				<class id="Mobius.ComposedModels.Common.JoinPanelObject">
+					<int id="ClassVersion">3</int>
+					<class id="Mobius.BaseClasses.BaseVertexClass">
+						<int id="ClassVersion">3</int>
+						<class id="Mobius.BaseClasses.BasePanelObjectClass">
+							<int id="ClassVersion">5</int>
+							<string id="Name">${darepnodename}</string>
+							<boolean id="ContainsLabel">true</boolean>
+							<boolean id="IsLabelShown">true</boolean>
+						</class>
+						<point id="CenterPoint">
+							<int id="x">300</int>
+							<int id="y">50</int>
+						</point>
+					</class>
+					<int id="SharingInfoSize">${sharinginfosize}</int>
+					${newsharedobjs}
+				</class>
+				${composedatomicobjects}
+				${composedatomicedges}
+			</class>
+			<vector id="LocalGlobalNamesList">
+			</vector>
+			<vector id="LocalGlobalTypesList">
+			</vector>
+			<boolean id="DisplayToolTips">true</boolean>
+		</class>
+		<class id="Mobius.BaseClasses.BaseInfoClass">
+			<int id="ClassVersion">2</int>
+		</class>
+		<boolean id="Valid">true</boolean>
+	</class>
+</class>
